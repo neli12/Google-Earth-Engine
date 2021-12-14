@@ -1,7 +1,7 @@
 // This is a basic tutorial on how to download surface reflectance images from Landsat-8 mission.
 // These images are already atmospherically corrected and do not need preprocessing.
 // I will give two examples: i) one using coordinates to select an area from which images will be downloaded
-// and ii) using the tiles. Let's start!
+// and ii) using the entire scene. Let's start!
 
 //Download using coordinates  
 //Set the polygon or coordinates of your study area and add to the map
