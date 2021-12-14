@@ -1,4 +1,4 @@
-// This is a basic tutorial on how to download surface reflectance images from Landsat-8 mission.
+// This is a basic tutorial on how to download surface reflectance images from Landsat-8 mission (https://code.earthengine.google.com/098912d8d9653d1d2f29732ac322db07)
 // These images are already atmospherically corrected and do not need preprocessing.
 // I will give two examples: i) one using coordinates to select an area from which images will be downloaded
 // and ii) using the entire scene. Let's start!
