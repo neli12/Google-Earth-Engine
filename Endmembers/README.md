@@ -6,3 +6,5 @@ I run this code using an image from my country, Paraguay, as you can see from th
 
 
 <img src="https://github.com/neli12/screenshots-figures/blob/main/image2.png" width="700" />
+
+I selected three areas to represent bare soil, vegetation and water. The polygons were drawn in the code editor and then the mean was calculated using the reduceRegions() function. From this, we can see the "pure" spectra of each land cover class, considered the "endmember". Those are then used to solve the "x" value in the equation A * x = B, where A represents the endmember, x are the fractions and B are the pixel values. This equation represent the "mixed pixels" and is used to represent the endmembers after solving the it. The resultinng image with the endmember for each surface is depicted in the figure below
