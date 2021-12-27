@@ -7,5 +7,11 @@ I run this code using an image from my country, Paraguay, as you can see from th
 
 <img src="https://github.com/neli12/screenshots-figures/blob/main/image2.png" width="700" />
 
-I selected three areas to represent bare soil, vegetation and water. The polygons were drawn in the code editor and then the mean was calculated using the reduceRegions() function. From this, we can see the "pure" spectra of each land cover class, considered the "endmember". Those are then used to solve the "x" value in the equation A * x = B, where A represents the endmember, x are the unknowns fractions and B are the pixel values. This equation represent the "mixed pixels" and is used to represent the endmembers after solving the it. In other words, we are doing an spectral unmixing, assuming that each pixel is not pure and instead is a mixture of endmembers of different land covers.
+I selected three areas to represent bare soil, vegetation and water. The polygons were drawn in the code editor and then the mean was calculated using the reduceRegions() function. From this, we can see the "pure" spectra of each land cover class, considered the "endmember". Below is depicted in the figure the spectral behaviour of each class.
+
+<img src="https://github.com/neli12/screenshots-figures/blob/main/image5.png" width="700" />
+
+Those are then used to solve the "x" value in the equation A * x = B, where A represents the endmember, x are the unknowns fractions and B are the pixel values. This equation represent the "mixed pixels" and is used to represent the endmembers after solving the it. In other words, we are doing an spectral unmixing, assuming that each pixel is not pure and instead is a mixture of endmembers of different land covers.
 The resulting image, after obtaining the endmemners for each surface is depicted in the figure below.
+
+<img src="https://github.com/neli12/screenshots-figures/blob/main/image4.png" width="700" />
