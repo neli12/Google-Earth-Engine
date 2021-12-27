@@ -5,4 +5,4 @@ This time, I bring here the code to get endmembers of Earth surfaces. This tutor
 I run this code using an image from my country, Paraguay, as you can see from the images below. 
 
 
-<img src="https://github.com/neli12/screenshots-figures/blob/main/image1.png" width="500" />
+<img src="https://github.com/neli12/screenshots-figures/blob/main/image2.png" width="500" />
