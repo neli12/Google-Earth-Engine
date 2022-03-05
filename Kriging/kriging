@@ -26,5 +26,5 @@ Map.addLayer(interpolated);
 
 // Export the kriged map
 var scale = 30;
-Export.image.toAsset({image: interpolated, description: 'SYSI_kriged_'+band+'_'+scale+'m', 
-scale: scale, region: bbox, maxPixels: 1000000000000});
+Export.image.toDrive({image: interpolated, description: 'SYSI_kriged_'+band+'_'+scale+'m', 
+scale: scale, region: geometry, maxPixels: 1000000000000});
