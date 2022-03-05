@@ -41,7 +41,7 @@ var S2A_collection = S2A_collection.map(function(img) {
 print(S2A_collection)
 
 
-// Function to rename images to their acquisition date
+// Function to rename images to their acquisition date  -- From fitoprincipe user
 function mosaicByDate(S2A_collection){
   var imlist = S2A_collection.toList(S2A_collection.size())
   var unique_dates = imlist.map(function(im){
@@ -53,16 +53,12 @@ function mosaicByDate(S2A_collection){
                            .mosaic()
   return im.set("system:time_start", d.millis(), "system:id", d.format("YYYY-MM-dd"))
  })
-  // imcol: An image collection
-  // returns: An image collection
-
   return ee.ImageCollection(mosaic_imlist)
 }
 
+var images_date = mosaicByDate(S2A_collection)
+print(images_date)
 
-var ic_m = mosaicByDate(S2A_collection)
-
-print(ic_m)
-
-batch.Download.ImageCollection.toDrive(ic_m, 'S2A_22KHV',  
+batch.Download.ImageCollection.toDrive(images_date, 'S2A_22KHV',  
               {scale: 10, region: bbox, name:'{system_date}', fileFormat: 'GeoTIFF', crs: 'EPSG:4326', type: 'float'})
+              
