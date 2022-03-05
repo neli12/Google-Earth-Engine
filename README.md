@@ -5,4 +5,5 @@ More advanced projects are presented by specific names, as follows:
 - LST: Simple code to calculate Land Surface Temperature from Landsat thermal bands.
 - Getting Started: Simple code to process satellite images.
 - Kriging: Obtain interpolated values at unsampled locations by using kriging. The semivariogram parameters are not calculated here.
+- NDVI: Calculate the Normalized Vegetation Difference Index by different way using a single image or over a collection of images.
 - Endmembers: GEE tutorial for calculating endmembers from landsat images.
