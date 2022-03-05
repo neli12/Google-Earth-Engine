@@ -1,0 +1,43 @@
+//1. Calculate NDVI by selecting the bands and using the formula (NIR-RED)/(NIR+RED)
+// Define geometry
+var geometry = ee.Geometry.Rectangle({coords: [-48.1399397050000388,-23.1525209996826966, -47.2014340000000061,-22.2741111864713233], geodesic: false});
+Map.addLayer(geometry)
+
+// Import the Landsat 8 TOA image collection.
+var L8_collection = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
+                      .filterBounds(geometry)
+                      .filterDate('1984-09-01', '1985-02-20')
+                      .select('B4', 'B5')
+                      .sort('CLOUD_COVER')
+
+print(L8_collection);
+
+// Get the least cloudy image.
+var image1 = L8_collection.first()
+
+print(image1)
+
+// Compute the Normalized Difference Vegetation Index (NDVI).
+var nir = image1.select('B5');
+var red = image1.select('B4');
+var ndvi = nir.subtract(red).divide(nir.add(red)).rename('NDVI');
+
+// Display the result.
+Map.centerObject(image2, 9);
+var ndviParams = {min: -1, max: 1, palette: ['red', 'white', 'yellow']};
+Map.addLayer(ndvi, ndviParams, 'NDVI image');
+
+Export.image.toDrive({image: ndvi, description: 'image_198409242_ndvi', scale: 30, maxPixels: 200000000});
+
+//2. Calculate NDVI using the function 
+var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
+
+//3. Calculate NDVI over a collection of images
+var NDVI = function(image) {
+  var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
+  return image.addBands(ndvi);
+};
+
+//Add the NDVI to the collection of images
+var collectionNDVI = L8_collection.map(NDVI);
+print(collectionNDVI)
