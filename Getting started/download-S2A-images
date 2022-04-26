@@ -62,3 +62,4 @@ print(images_date)
 batch.Download.ImageCollection.toDrive(images_date, 'S2A_22KHV',  
               {scale: 10, region: bbox, name:'{system_date}', fileFormat: 'GeoTIFF', crs: 'EPSG:4326', type: 'float'})
               
+//
