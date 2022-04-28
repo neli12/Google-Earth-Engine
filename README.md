@@ -7,4 +7,5 @@ More advanced projects are presented by specific names, as follows:
 - Kriging: Obtain interpolated values at unsampled locations by using kriging. The semivariogram parameters are not calculated here.
 - LST: Simple code to calculate Land Surface Temperature from Landsat thermal bands.
 - NDVI: Calculate the Normalized Vegetation Difference Index by different way using a single image or over a collection of images.
+- TERRACLIMATE: Download climatic variables
 
