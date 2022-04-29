@@ -4,6 +4,9 @@ The tutorials are hosted in the "Getting started" folder and are mainly intended
 More advanced projects are presented by specific names, as follows:
 - Endmembers: GEE tutorial for calculating endmembers from landsat images.
 - Getting Started: Simple code to process satellite images.
+  - dowload_landsat
+  - dowload_sentinel
+  - NPP_dowload
 - Kriging: Obtain interpolated values at unsampled locations by using kriging. The semivariogram parameters are not calculated here.
 - LST: Simple code to calculate Land Surface Temperature from Landsat thermal bands.
 - NDVI: Calculate the Normalized Vegetation Difference Index by different way using a single image or over a collection of images.
