@@ -1,13 +1,19 @@
+// Create a multi-part feature.
+var multiPoint = ee.Geometry.MultiPoint([[-46.08, -8.58], [-46.1161, -11.646], [-46.1168, -13.348]]);
+print(multiPoint)
+
+Map.addLayer(multiPoint);
+
 //Load image collection and select the Npp band
-var NPP = ee.ImageCollection('MODIS/006/MOD17A3H')
-                  .filter(ee.Filter.date('2014-01-01', '2014-12-31'))
+var NPP = ee.ImageCollection('MODIS/006/MOD17A3HGF')
+                  .filter(ee.Filter.date('2000-01-01', '2021-12-31'))
                   .filterBounds(geometry)
                   .select('Npp')
 print(NPP);
 
-// Convert to one single image and clip the raster                 
+// Calculate the mean and clip the raster                 
 var NPP_clip = NPP.toBands()
-                  .clip(geometry)
+.clip(geometry)
                   
 print(NPP_clip);
 
@@ -19,9 +25,11 @@ var vis_param = {
 };
 
 //Add layer to the map
-Map.addLayer(NPP_clip, vis_param, 'NPP');
+Map.addLayer(NPP, vis_param, 'NPP');
 
 //Export image to Drive
-Export.image.toDrive({image: NPP_clip,
-                      description: 'NPP_2014',
-                      crs: 'EPSG:4326'})
+Export.image.toDrive({image: NPP,
+                      description: 'NPP_2000_2021_iv',
+                      region: geometry,
+                      crs: 'EPSG:4326'
+})
