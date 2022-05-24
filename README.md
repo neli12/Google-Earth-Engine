@@ -1,3 +1,4 @@
+
 # Google Earth Engine
 Hello everyone! In this folder, you will find tutorials and projects in which I used the Google Earth Engine platform.
 The tutorials are hosted in the "Getting started" folder and are mainly intended for those who never worked with GEE, as there are very basic code. Those were the tutorials I followed when first started working with GEE. 
