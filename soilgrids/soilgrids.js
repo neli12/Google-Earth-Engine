@@ -3,8 +3,6 @@ var sand = ee.Image("projects/soilgrids-isric/sand_mean")
              .reduce('mean')
              .select('mean').rename('sand')
              .float();
-
-print(sand);
 var clay = ee.Image("projects/soilgrids-isric/clay_mean")
              .reduce('mean')
              .select('mean').rename('clay')
