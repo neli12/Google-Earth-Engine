@@ -1,28 +1,30 @@
 //Load soil layers, clip by geometry and reduce the layers to the mean
 var sand = ee.Image("projects/soilgrids-isric/sand_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('sand');
+             .reduce('mean')
+             .select('mean').rename('sand')
+             .float();
+
+print(sand);
 var clay = ee.Image("projects/soilgrids-isric/clay_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('clay');
+             .reduce('mean')
+             .select('mean').rename('clay')
+             .float();
 var cec = ee.Image("projects/soilgrids-isric/cec_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('cec');
+             .reduce('mean')
+             .select('mean').rename('cec')
+             .float();
 var nitrogen = ee.Image("projects/soilgrids-isric/nitrogen_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('nitrogen');
+             .reduce('mean')
+             .select('mean').rename('nitrogen')
+             .float();
 var ph = ee.Image("projects/soilgrids-isric/phh2o_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('ph');
+             .reduce('mean')
+             .select('mean').rename('ph')
+             .float();
 var soc = ee.Image("projects/soilgrids-isric/soc_mean")
-             .clip(geometry)
-             .reduce('sum')
-             .select('sum').rename('soc');
+             .reduce('mean')
+             .select('mean').rename('soc')
+             .float();
 
 //Add all the layers to a new image
 var newBands = ee.Image([clay, cec, nitrogen, ph, soc]);
@@ -35,7 +37,9 @@ print('Collection from list of images', col);
 var imageVisParam = {"opacity":1,"min":10,"max":4000,"palette":["ffef29","0000ff"]};
 
 //Add layer to the map
-Map.addLayer(clay, imageVisParam)
+Map.addLayer(sand, imageVisParam)
 
 //Export image
-Export.image.toDrive({image: col, description: 'soil_mean'})
+Export.image.toDrive({image: col, description: 'soil_mean_def',
+  region: geometry
+})
