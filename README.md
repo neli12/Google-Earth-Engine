@@ -6,6 +6,7 @@ More advanced projects are presented by specific names, as follows:
 - Endmembers: GEE tutorial for calculating endmembers from landsat images.
 - Getting Started: Simple code to process satellite images.
   - dowload_landsat
+  - calculate-spectral-indices-and-download-sentinel-data
   - dowload_sentinel
   - NPP_download
 - Kriging: Obtain interpolated values at unsampled locations by using kriging. The semivariogram parameters are not calculated here.
