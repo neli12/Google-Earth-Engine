@@ -71,7 +71,7 @@ var addNDRE = function(img) {
   var ndre = img.expression(
   '(nir-red2)/(nir+red2)', {
     'nir': img.select('B8A').divide(10000),
-    'red2': img.select('B6').divide(10000)}).rename('NDRE');
+    'red2': img.select('B5').divide(10000)}).rename('NDRE');
   return img.addBands(ndre);
 }
 
