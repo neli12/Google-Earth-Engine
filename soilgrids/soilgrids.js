@@ -1,6 +1,6 @@
 //Load soil layers, clip by geometry and reduce the layers to the mean
 var sand = ee.Image("projects/soilgrids-isric/sand_mean")
-             .reduce('mean')
+             .reduce('mea')
              .select('mean').rename('sand')
              .float();
 var clay = ee.Image("projects/soilgrids-isric/clay_mean")
