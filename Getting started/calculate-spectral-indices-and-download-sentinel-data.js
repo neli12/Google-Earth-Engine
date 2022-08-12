@@ -1,16 +1,16 @@
-// Link to the code: https://code.earthengine.google.com/de5e291103b5ae983f884c73ddf74652
+// Link to the code: https://code.earthengine.google.com/725e43472f3da494faa74dda930dbdf0
 //Require geetools
 var batch = require('users/fitoprincipe/geetools:batch');
-
 
 //Download Sentinel
 
 // Load Sentinel-2 Surface refelctance
-var S2A_collection = ee.ImageCollection('COPERNICUS/S2_SR')
-                  .filterDate('2021-01-01', '2021-12-31')
-                  .filterBounds(geometry)
-                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
-                  .select(['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12']);
+var S2A_collection = ee.ImageCollection('COPERNICUS/S2_SR')  // 13 Dezembro 2018
+                  .filterDate('2021-05-01', '2021-05-31')
+                  .filterBounds(area)
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+                  .select(['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'])
+                  .sort('CLOUDY_PIXEL_PERCENTAGE');
 
 
 print(S2A_collection); // number of images 
@@ -103,6 +103,13 @@ var S2Awithindices = S2A_collection.map(addNDVI)
                             .map(addBSI);
 print(S2Awithindices)
 
+/********************************************************************************************
+Add map to layer
+********************************************************************************************/
+Map.centerObject(area)
+Map.addLayer(S2Awithindices, {bands: ['B4', 'B3', 'B2'], min: 156, max: 1470}, 'Image')
+Map.addLayer(area, {}, 'Area');
+
 /******************************************************************************************** 
 Function to rename images to their acquisition date  -- From fitoprincipe user
 *********************************************************************************************/
@@ -124,23 +131,23 @@ function collection_by_date(S2Awithindices) {
 var images_date = collection_by_date(S2Awithindices)
 print(images_date)
 
-batch.Download.ImageCollection.toDrive(images_date, 'S2A_RR',  
-              {scale: 20, region: geometry, name:'{system_date}', 
+batch.Download.ImageCollection.toDrive(images_date, 'S2A',  
+              {scale: 20, region: area, name:'{system_date}', 
               fileFormat: 'GeoTIFF', crs: 'EPSG:4326', type: 'float'})
               
               
 /***************************************************************************************
 Mean reflectance
 ***************************************************************************************/
-var S2A_mean = S2Awithindices.mean().toFloat()
+var S2A_mean = S2Awithindices.mean().toFloat().clip(area)
 print(S2A_mean)
 
+Map.addLayer(S2A_mean, {bands: ['B4', 'B3', 'B2'], min: 156, max: 1470}, 'Image_clip')
 
 /***************************************************************************************
 Export
 ***************************************************************************************/
 Export.image.toDrive({image: S2A_mean, description: 'S2A_mean_2021_float', scale: 20,
-  region: geometry, crs: 'EPSG:4326'
+  region: area, crs: 'EPSG:4326'
 })
-
 
