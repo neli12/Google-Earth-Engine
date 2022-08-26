@@ -1,0 +1,34 @@
+// Importing module
+
+var TAGEE = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
+
+// Water mask
+
+var hansen_2016 = ee.Image('UMD/hansen/global_forest_change_2016_v1_4').select('datamask');
+var hansen_2016_wbodies = hansen_2016.neq(1).eq(0);
+var waterMask = hansen_2016.updateMask(hansen_2016_wbodies);
+
+// Loading SRTM 30 m
+
+var demSRTM = ee.Image('USGS/SRTMGL1_003').clip(geometry).rename('DEM');
+
+// Smoothing filter.
+var gaussianFilter = ee.Kernel.gaussian({
+  radius: 3, sigma: 2, units: 'pixels', normalize: true
+});
+
+// Smoothing the DEM with the gaussian kernel.
+var demSRTM = demSRTM.convolve(gaussianFilter).resample("bilinear");
+
+// Terrain analysis
+
+var DEMAttributes = TAGEE.terrainAnalysis(TAGEE, demSRTM, geometry).updateMask(waterMask);
+print(DEMAttributes.bandNames(), 'Parameters of Terrain');
+
+// Visualization
+
+var vizVC = TAGEE.makeVisualization(DEMAttributes, 'Slope', 'level4', geometry, 'rainbow');
+Map.addLayer(vizVC, {}, 'Slope');
+Map.centerObject(geometry);
+
+Export.image.toDrive({image: DEMAttributes, description: 'DEM_terrain', crs: 'EPSG:4326'})
