@@ -1,5 +1,10 @@
 
-// Link to the code: https://code.earthengine.google.com/de7bdeb03530a951d622c23d90b1ed27
+// Link to the code: https://code.earthengine.google.com/5ff32a17a4fde7900f03d42e4107e293
+
+// Add map
+Map.centerObject(pts)
+Map.addLayer(pts)
+
 // Importing module
 var TAGEE = require('users/joselucassafanelli/TAGEE:TAGEE-functions');
 
@@ -12,6 +17,7 @@ var terrain = DEMAttributes.reduceRegions({
                     reducer: ee.Reducer.first(), 
                     scale: 30}); // define a scale in meters
 
+print(terrain);
 Export.table.toDrive({
   collection: terrain, 
   description: 'terrain', 
