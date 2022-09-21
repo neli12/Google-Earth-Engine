@@ -1,0 +1,27 @@
+Link: https://code.earthengine.google.com/2da8e988863b2ac813816d38f2c3aa1d
+
+// Load collection
+var L8 = ee.ImageCollection("LANDSAT/LC08/C02/T1_TOA")
+           .filterDate('2021-01-01', '2021-12-31')
+           .filterBounds(geometry);
+           
+print(L8);
+Map.centerObject(geometry)
+Map.addLayer(L8);
+
+//Select an image and add to the map
+var L8_image = ee.Image('LANDSAT/LC08/C02/T1_TOA/LC08_220073_20210322')
+var vizParams = {bands: ['B4', 'B3', 'B2'], min: 0.048, max: 0.139}
+//Map.addLayer(L8_image, vizParams, 'L8 image');
+
+// Calculate the Cloud Score - This is the same image, n which the cloud band is added at the end
+var L8_withCloudScore = ee.Algorithms.Landsat.simpleCloudScore(L8_image)
+print(L8_withCloudScore);
+
+// Select the pixels with only 20% cloud and add the mask to the map
+var cloud_mask = L8_withCloudScore.select(['cloud']).lte(20);
+Map.addLayer(cloud_mask, {}, 'Cloud mask')
+
+// Apply the mask to the image to exclude pixels with cloud contamination
+var L8_masked = L8_image.updateMask(cloud_mask);
+Map.addLayer(L8_masked, vizParams, 'L8 masked');
