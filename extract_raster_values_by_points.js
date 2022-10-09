@@ -1,5 +1,5 @@
 
-// Link to the code: https://code.earthengine.google.com/854bd58026e79d5e171ce1e6c4da8c94
+// Link to the code: https://code.earthengine.google.com/854bd58026e79d5e171ce1e6c4da8c94)
 
 //Add layers to the map
 Map.addLayer(DEM, {min: 100, max: 250, palette: ['ff0a0a','ffec06','82ff10','194bff']}, 'DEM');
