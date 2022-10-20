@@ -1,3 +1,5 @@
+Link to GEE code: https://code.earthengine.google.com/b6f973f051900b8c7a86b2cfd20fd501
+
 //Function to calculate PCA
 //From this link: https://www.lifeingis.com/computation-of-principal-components-analysis-in-the-google-earth-engine/#:~:text=Principal%20components%20analysis%20(PCA)%20is,the%20original%20image%20or%20dataset.
 function PCA(maskedImage){
@@ -103,3 +105,4 @@ Map.addLayer(L8_terrain, {bands:['b20'], min: 4.29, max: 19, palette: ['bcc1ff',
 var L8_pca = PCA(L8_terrain).select(['pc1', 'pc2', 'pc3']);
 var L8_comp = L8_terrain.addBands(L8_pca)
 Map.addLayer(L8_pca, {bands: ['pc1', 'pc2', 'pc3']}, 'pca')
+Export.image.toDrive({image: L8_pca, description: 'L8_pca', scale: 30, crs:'EPSG:4326'})
