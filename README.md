@@ -15,8 +15,10 @@ More advanced projects are presented by specific names, as follows:
 - TERRACLIMATE: Download climatic variables
 - soilgrids: Donwload soil maps from the SoilGrids platform
 - S2A_TOA_to_BOA: Atmospheric correction of S2A TOA image to BOA.
-- extract_raster_values_by_points
-- terrain_analysis: calculate terrain attributes from a digital elevation image
+- extract_raster_values_by_points: using a shapefile to extract raster values
+- principal_component_analysis: PCA using a set of spectral bands and terrain analysis
 - removeCloudsLandsat: Use a mask to exclude areas with clouds.
+- terrain_analysis: calculate terrain attributes from a digital elevation image.
+
 
 
