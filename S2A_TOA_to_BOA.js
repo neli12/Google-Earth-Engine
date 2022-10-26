@@ -94,4 +94,7 @@ Map.addLayer(S2A_def, {bands: ['NDVI'], min: 0.4, max: 0.92, palette: ['ff1307',
 /*********************************************************************************************
  * Export images
  * ******************************************************************************************/
-Export.image.toDrive({image: S2A_def, description: 'S2A_july', crs: 'EPSG:27700', scale: 20})
+var S2A_clip = S2A_def.clip(geometry)
+Map.centerObject(geometry,11)
+Map.addLayer(S2A_clip, {bands: ['NDVI'], min: 0.4, max: 0.92, palette: ['ff1307','fcff29','4dff21']}, 'NDVI')
+Export.image.toDrive({image: S2A_clip, description: 'S2A_july', crs: 'EPSG:27700', scale: 20})
