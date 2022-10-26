@@ -14,4 +14,7 @@ More advanced projects are presented by specific names, as follows:
 - NDVI: Calculate the Normalized Vegetation Difference Index by different way using a single image or over a collection of images.
 - TERRACLIMATE: Download climatic variables
 - soilgrids: Donwload soil maps from the SoilGrids platform
+- removeCloudsLandsat: Use a mask to exclude areas with clouds:
+- S2A_TOA_to_BOA: Atmospheric correction of S2A TOA image to BOA.
+- terrain_analysis: calculate terrain attributes from a digital elevation image
 
